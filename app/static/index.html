@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>招投标漏项检查</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">COMPLIANCE CHECK</p>
+        <h1>招投标文件漏项检查</h1>
+        <p class="subtitle">只提取和核对关键条款，不生成整本标书。</p>
+      </div>
+      <div class="model-pill"><span id="connection-dot" class="dot"></span><span id="model-label">模型读取中</span></div>
+    </header>
+
+    <section class="setup panel">
+      <div class="section-heading"><div><p class="eyebrow">01 / INPUT</p><h2>上传招标文件</h2></div><span class="hint">PDF · DOCX · TXT · MD，最大 <span id="size-label">20</span> MB</span></div>
+      <div class="controls-grid">
+        <label class="file-drop" id="drop-zone">
+          <input id="file-input" type="file" accept=".pdf,.docx,.txt,.md">
+          <span class="upload-mark">+</span><strong id="file-name">选择或拖入文件</strong><small id="file-meta">仅处理可提取文字，不会生成标书</small>
+        </label>
+        <div class="settings">
+          <label>模型名称<input id="model-input" placeholder="例如 gpt-6-astra" autocomplete="off"></label>
+          <label>协议<select id="protocol-input"><option value="" selected>请选择协议</option><option value="openai">OpenAI-compatible</option><option value="anthropic">Anthropic-compatible</option></select></label>
+          <label>代理地址<input id="base-url-input" placeholder="例如 http://127.0.0.1:15721/v1" autocomplete="off"></label>
+          <div class="button-row"><button id="test-btn" class="secondary">测试连接</button><button id="start-btn" class="primary" disabled>开始检查</button></div>
+        </div>
+      </div>
+      <div id="notice" class="notice" hidden></div>
+    </section>
+
+    <section class="progress panel" id="progress-panel" hidden>
+      <div class="progress-head"><div><p class="eyebrow">02 / ANALYZE</p><h2 id="stage-label">等待处理</h2></div><strong id="progress-value">0%</strong></div>
+      <div class="progress-track"><div id="progress-bar"></div></div><p id="progress-message" class="muted"></p>
+    </section>
+
+    <section class="results panel" id="results-panel" hidden>
+      <div class="section-heading"><div><p class="eyebrow">03 / REVIEW</p><h2>检查清单</h2></div><div class="button-row"><a id="json-link" class="secondary button-link">导出 JSON</a><a id="csv-link" class="secondary button-link">导出 CSV</a></div></div>
+      <div class="review-note">结果来自招标文件原文抽取。带“待核验”的条目不能直接视为确定结论，请重点复核废标条款和截止时间。</div>
+      <nav class="tabs" id="tabs"></nav>
+      <div id="table-wrap"></div>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

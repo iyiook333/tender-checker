@@ -1,0 +1,33 @@
+# 环境变量（可复制为 .env）
+CCSWITCH_BASE_URL=
+CCSWITCH_API_KEY=
+CCSWITCH_MODEL=
+CCSWITCH_PROTOCOL=
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# 工具缓存
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# 环境变量（含密钥，不要提交）
+.env
+
+# 上传的招标文件与解析产物（可能含敏感内容）
+*.pdf
+*.docx
+*.doc
+check-results.*
+!docs/**/*.pdf
+
+# IDE
+.vscode/
+.idea/
+*.swp
